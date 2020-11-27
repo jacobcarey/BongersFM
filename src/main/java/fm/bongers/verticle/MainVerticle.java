@@ -10,6 +10,8 @@ public class MainVerticle extends AbstractVerticle {
   @Override
   public void start(Future<Void> startFuture) {
 
+    String port = getPort();
+
     HttpServer server = vertx.createHttpServer();
 
     server.requestHandler(
@@ -17,7 +19,8 @@ public class MainVerticle extends AbstractVerticle {
           req.response().end("OK");
         });
 
-    server.listen(8080, ar -> startFuture.completer().handle(ar.map((Void) null)));
+    server.listen(
+        Integer.parseInt(port), ar -> startFuture.completer().handle(ar.map((Void) null)));
 
     Router router = Router.router(vertx);
 
@@ -30,5 +33,16 @@ public class MainVerticle extends AbstractVerticle {
                   .putHeader("content-type", "text/html")
                   .end("Keep on bonging!");
             });
+  }
+
+  private String getPort() {
+    String port = System.getenv("PORT");
+    if (port == null) {
+      port = System.getenv("$PORT");
+      if (port == null) {
+        port = "8080";
+      }
+    }
+    return port;
   }
 }
