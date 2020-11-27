@@ -2,31 +2,18 @@ package fm.bongers.service;
 
 import com.github.redouane59.twitter.TwitterClient;
 import com.github.redouane59.twitter.signature.TwitterCredentials;
-
-import java.io.File;
-import java.io.IOException;
+import fm.bongers.infrastructure.Config;
 
 public class ConnectService {
 
-  public TwitterClient connectTwitter() {
-    TwitterClient twitterClient = null;
-    try {
-      twitterClient =
-          new TwitterClient(
-              TwitterClient.OBJECT_MAPPER.readValue(
-                  new File("twitter-config.json"), TwitterCredentials.class));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  public static TwitterClient connectTwitter() {
 
-    return twitterClient;
+    return new TwitterClient(
+        TwitterCredentials.builder()
+            .accessToken(Config.getInstance().getTwitterAccessToken())
+            .accessTokenSecret(Config.getInstance().getTwitterAccessTokenSecret())
+            .apiKey(Config.getInstance().getTwitterApiKey())
+            .apiSecretKey(Config.getInstance().getTwitterSecretAccessKey())
+            .build());
   }
-
-  //  public static Session connectLastFM() {
-  //    Session session =
-  //        Authenticator.getMobileSession(
-  //            v.getL_USERNAME(), v.getL_PASSWORD(), v.getL_API_KEY(), v.getL_CONSUMER_SECRET());
-  //
-  //    return session;
-  //  }
 }

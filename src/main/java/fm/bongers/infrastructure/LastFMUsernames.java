@@ -1,5 +1,6 @@
 package fm.bongers.infrastructure;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public final class LastFMUsernames {
@@ -12,6 +13,15 @@ public final class LastFMUsernames {
   public static LastFMUsernames getInstance() {
     if (INSTANCE == null) {
       INSTANCE = new LastFMUsernames();
+      Map<String, String> users = new HashMap<>();
+      users.put("JOC01", "Jacob");
+      //      users.put("hazzamc", "Harry");
+      //      users.put("Jackbates96", "Bates");
+      //      users.put("BRS01", "Beth");
+      //      users.put("ellwilson", "El");
+      //      users.put("JackJackCullen", "Cullen");
+      //      users.put("Razzabee", "RazB");
+      INSTANCE.setUsernames(users);
     }
     return INSTANCE;
   }
@@ -23,15 +33,4 @@ public final class LastFMUsernames {
   public void setUsernames(Map<String, String> usernames) {
     this.usernames = usernames;
   }
-
-  //  static {
-  //    USERNAMES = new HashMap<String, String>();
-  //    USERNAMES.put("JOC01", "Jacob");
-  //    USERNAMES.put("hazzamc", "Harry");
-  //    USERNAMES.put("Jackbates96", "Bates");
-  //    USERNAMES.put("BRS01", "Bethany");
-  //    USERNAMES.put("ellwilson", "El");
-  //    USERNAMES.put("JackJackCullen", "Cullen");
-  //    USERNAMES.put("Razzabee", "RazB");
-  //  }
 }
