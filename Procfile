@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* fm.bongers.Application
+web: java fm.bongers.Application
