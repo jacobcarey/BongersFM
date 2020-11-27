@@ -11,12 +11,21 @@ import fm.bongers.service.TwitterService;
 import fm.bongers.util.StringUtil;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
+import io.vertx.core.logging.SLF4JLogDelegateFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static io.vertx.core.logging.LoggerFactory.LOGGER_DELEGATE_FACTORY_CLASS_NAME;
+import static java.lang.System.setProperty;
+
 public class Application {
+
+  private static Logger LOGGER =
+      LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
 
   private static TwitterClient twitterClient;
 
@@ -27,11 +36,13 @@ public class Application {
     for (Map.Entry<String, String> user : LastFMUsernames.getInstance().getUsernames().entrySet()) {
       try {
         Track latestTrack = lastFMService.getLatestTrack(user.getKey());
-
+        LOGGER.info("Track found: " + latestTrack);
         if (LastTracksPlayed.getInstance().getTrackTimes().containsKey(user.getKey())) {
           Integer time = LastTracksPlayed.getInstance().getTrackTimes().get(user.getKey());
           if (time < latestTrack.getTime()) {
-            tweets.add(StringUtil.buildTweet(user, latestTrack));
+            String tweet = StringUtil.buildTweet(user, latestTrack);
+            tweets.add(tweet);
+            LOGGER.info("Adding tweet: " + tweet);
             LastTracksPlayed.getInstance()
                 .getTrackTimes()
                 .put(user.getKey(), latestTrack.getTime());
@@ -53,9 +64,12 @@ public class Application {
     VertxOptions vertxOptions =
         new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 2); // Two minutes...
     Vertx vertx = Vertx.vertx(vertxOptions);
-    System.out.println("Deploying verticle...");
+
+    setProperty(LOGGER_DELEGATE_FACTORY_CLASS_NAME, SLF4JLogDelegateFactory.class.getName());
+
+    LOGGER.info("Deploying verticle...");
     vertx.deployVerticle("fm.bongers.verticle.MainVerticle");
-    System.out.println("Deployed verticle...");
+    LOGGER.info("Deployed verticle...");
 
     twitterClient = ConnectService.connectTwitter();
     vertx.setPeriodic(1000 * 60 * 4, (l) -> scheduling()); // Four minutes...
