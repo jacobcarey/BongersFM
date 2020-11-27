@@ -56,6 +56,6 @@ public class Application {
     vertx.deployVerticle("fm.bongers.verticle.MainVerticle");
 
     twitterClient = ConnectService.connectTwitter();
-    vertx.setPeriodic(1000 * 30, (l) -> scheduling()); // Four minutes...
+    vertx.setPeriodic(1000 * 60 * 4, (l) -> scheduling()); // Four minutes...
   }
 }
