@@ -28,6 +28,11 @@
             <version>3.9.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+            <version>3.9.4</version>
+        </dependency>
 
         <!-- Twitter API -->
         <dependency>
@@ -35,6 +40,7 @@
             <artifactId>twittered</artifactId>
             <version>1.11</version>
         </dependency>
+
 
     </dependencies>
 
