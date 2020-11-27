@@ -1,5 +1,7 @@
 package fm.bongers.infrastructure;
 
+import java.util.Map;
+
 public final class Config {
 
   private static fm.bongers.infrastructure.Config INSTANCE;
@@ -8,19 +10,30 @@ public final class Config {
   private String twitterSecretAccessKey;
   private String twitterAccessToken;
   private String twitterAccessTokenSecret;
+  private String port;
 
   private Config() {}
 
   public static fm.bongers.infrastructure.Config getInstance() {
     if (INSTANCE == null) {
       INSTANCE = new fm.bongers.infrastructure.Config();
-      INSTANCE.setLastFmApi(System.getenv("LASTFM_API"));
-      INSTANCE.setTwitterAccessToken(System.getenv("T_ACCESS_TOKEN"));
-      INSTANCE.setTwitterAccessTokenSecret(System.getenv("T_ACCESS_TOKEN_SECRET"));
-      INSTANCE.setTwitterApiKey(System.getenv("T_API_KEY"));
-      INSTANCE.setTwitterSecretAccessKey(System.getenv("T_SECRET_ACCESS_KEY"));
+      Map<String, String> env = System.getenv();
+      INSTANCE.setLastFmApi(env.getOrDefault("LASTFM_API", "x"));
+      INSTANCE.setTwitterAccessToken(env.getOrDefault("T_ACCESS_TOKEN", "x"));
+      INSTANCE.setTwitterAccessTokenSecret(env.getOrDefault("T_ACCESS_TOKEN_SECRET", "x"));
+      INSTANCE.setTwitterApiKey(env.getOrDefault("T_API_KEY", "x"));
+      INSTANCE.setTwitterSecretAccessKey(env.getOrDefault("T_SECRET_ACCESS_KEY", "x"));
+      INSTANCE.setPort(env.getOrDefault("PORT", env.getOrDefault("$PORT", "8080")));
     }
     return INSTANCE;
+  }
+
+  public String getPort() {
+    return port;
+  }
+
+  public void setPort(String port) {
+    this.port = port;
   }
 
   public String getLastFmApi() {

@@ -1,5 +1,6 @@
 package fm.bongers.verticle;
 
+import fm.bongers.infrastructure.Config;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.http.HttpServer;
@@ -10,7 +11,7 @@ public class MainVerticle extends AbstractVerticle {
   @Override
   public void start(Future<Void> startFuture) {
 
-    String port = getPort();
+    String port = Config.getInstance().getPort();
 
     HttpServer server = vertx.createHttpServer();
 
@@ -33,16 +34,5 @@ public class MainVerticle extends AbstractVerticle {
                   .putHeader("content-type", "text/html")
                   .end("Keep on bonging!");
             });
-  }
-
-  private String getPort() {
-    String port = System.getenv("PORT");
-    if (port == null) {
-      port = System.getenv("$PORT");
-      if (port == null) {
-        port = "8080";
-      }
-    }
-    return port;
   }
 }
