@@ -27,7 +27,6 @@ public class Application {
     for (Map.Entry<String, String> user : LastFMUsernames.getInstance().getUsernames().entrySet()) {
       try {
         Track latestTrack = lastFMService.getLatestTrack(user.getKey());
-        System.out.println(latestTrack);
 
         if (LastTracksPlayed.getInstance().getTrackTimes().containsKey(user.getKey())) {
           Integer time = LastTracksPlayed.getInstance().getTrackTimes().get(user.getKey());
@@ -54,6 +53,8 @@ public class Application {
     VertxOptions vertxOptions =
         new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 2); // Two minutes...
     Vertx vertx = Vertx.vertx(vertxOptions);
+    vertx.deployVerticle("fm.bongers.verticle.MainVerticle");
+
     twitterClient = ConnectService.connectTwitter();
     vertx.setPeriodic(1000 * 30, (l) -> scheduling()); // Four minutes...
   }
