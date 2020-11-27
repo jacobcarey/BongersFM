@@ -53,7 +53,9 @@ public class Application {
     VertxOptions vertxOptions =
         new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 2); // Two minutes...
     Vertx vertx = Vertx.vertx(vertxOptions);
+    System.out.println("Deploying verticle...");
     vertx.deployVerticle("fm.bongers.verticle.MainVerticle");
+    System.out.println("Deployed verticle...");
 
     twitterClient = ConnectService.connectTwitter();
     vertx.setPeriodic(1000 * 60 * 4, (l) -> scheduling()); // Four minutes...
