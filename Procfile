@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT fm/bongers/Application.java
+web: java $JAVA_OPTS -Dserver.port=$PORT fm.bongers.Application.java
