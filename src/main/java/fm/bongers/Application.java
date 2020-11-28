@@ -54,6 +54,7 @@ public class Application {
         }
 
       } catch (Exception e) {
+        LOGGER.error(e);
         e.printStackTrace();
       }
     }
