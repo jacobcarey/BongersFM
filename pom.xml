@@ -73,7 +73,7 @@
                         <buildpack>heroku/jvm</buildpack>
                     </buildpacks>
                     <processTypes>
-                        <web>java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* Application
+                        <web>java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* fm.bongers.Application
                         </web>
                     </processTypes>
                 </configuration>
