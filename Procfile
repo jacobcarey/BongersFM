@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/bongersfm-1.0-SNAPSHOT.jar
+web: ./mvnw clean package; java -Dserver.port=$PORT $JAVA_OPTS -jar target/bongersfm-1.0-SNAPSHOT.jar
