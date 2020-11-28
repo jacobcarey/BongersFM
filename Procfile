@@ -1,2 +1,1 @@
-java -cp target/classes:target/dependency/* fm.bongers.Application
-
+web: java -jar target/bongersfm-1.0-SNAPSHOT.jar

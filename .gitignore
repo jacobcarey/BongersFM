@@ -1,6 +1,5 @@
 target
 .idea/*
-.mvn/*
 .settings/*
 /helloworld.iml
 /bongersfm.iml
