@@ -64,6 +64,11 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.4</version>
                 <configuration>
+
+                        <appName>bongersfm</appName>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Application</web>
+                    </processTypes>
                     <buildpacks>
                         <buildpack>heroku/exec</buildpack>
                         <buildpack>heroku/metrics</buildpack>
