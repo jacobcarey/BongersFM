@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* fm.bongers.Application
+web: java $JAVA_OPTS -Dserver.port=$PORT web: -jar target/bongersfm-1.0-SNAPSHOT.jar
