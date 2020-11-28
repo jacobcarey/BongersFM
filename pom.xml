@@ -65,15 +65,17 @@
                 <version>3.0.4</version>
                 <configuration>
 
-                        <appName>bongersfm</appName>
-                    <processTypes>
-                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Application</web>
-                    </processTypes>
+                    <appName>bongersfm</appName>
+
                     <buildpacks>
                         <buildpack>heroku/exec</buildpack>
                         <buildpack>heroku/metrics</buildpack>
                         <buildpack>heroku/jvm</buildpack>
                     </buildpacks>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* Application
+                        </web>
+                    </processTypes>
                 </configuration>
             </plugin>
 
