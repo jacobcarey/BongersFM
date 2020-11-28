@@ -24,12 +24,14 @@ import static java.lang.System.setProperty;
 
 public class Application {
 
-  private static Logger LOGGER =
+  private static final Logger LOGGER =
       LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
 
   private static TwitterClient twitterClient;
 
   static void scheduling() {
+    System.out.println("Let's check for bongers...");
+    LOGGER.info("Let's check for bongers...");
 
     List<String> tweets = new ArrayList<>();
     LastFMService lastFMService = new LastFMService(Config.getInstance().getLastFmApi());
