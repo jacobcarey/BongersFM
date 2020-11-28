@@ -1,1 +1,0 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT src/main/java/fm/bongers/Application.java
