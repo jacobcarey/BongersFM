@@ -7,6 +7,7 @@ import fm.bongers.infrastructure.LastTracksPlayed;
 import fm.bongers.model.Track;
 import fm.bongers.service.ConnectService;
 import fm.bongers.service.LastFMService;
+import fm.bongers.service.PingService;
 import fm.bongers.service.TwitterService;
 import fm.bongers.util.StringUtil;
 import io.vertx.core.Vertx;
@@ -15,6 +16,8 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.logging.SLF4JLogDelegateFactory;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +32,7 @@ public class Application {
 
   private static TwitterClient twitterClient;
 
-  static void scheduling() {
+  static void checkForUpdates() {
     System.out.println("Let's check for bongers...");
     LOGGER.info("Let's check for bongers...");
 
@@ -63,6 +66,15 @@ public class Application {
     }
   }
 
+  static void keepServerAlive() {
+    PingService pingService = new PingService();
+    try {
+      pingService.keepServiceAline();
+    } catch (URISyntaxException | IOException | InterruptedException e) {
+      LOGGER.error("Server couldn't be pinged: " + e);
+    }
+  }
+
   public static void main(String[] args) {
     System.err.println("Starting...");
     System.out.println("Starting...");
@@ -77,6 +89,8 @@ public class Application {
     LOGGER.info("Deployed verticle...");
 
     twitterClient = ConnectService.connectTwitter();
-    vertx.setPeriodic(1000 * 60 * 4, (l) -> scheduling()); // Four minutes...
+    vertx.setPeriodic(1000 * 60 * 4, (l) -> checkForUpdates()); // Four minutes...
+
+    vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 30 minutes
   }
 }
