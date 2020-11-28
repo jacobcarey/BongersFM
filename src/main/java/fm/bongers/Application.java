@@ -69,6 +69,7 @@ public class Application {
   static void keepServerAlive() {
     PingService pingService = new PingService();
     try {
+      LOGGER.warn("Attempting to ping server.");
       pingService.keepServiceAline();
     } catch (URISyntaxException | IOException | InterruptedException e) {
       LOGGER.error("Server couldn't be pinged: " + e);
@@ -76,7 +77,6 @@ public class Application {
   }
 
   public static void main(String[] args) {
-    System.err.println("Starting...");
     System.out.println("Starting...");
     VertxOptions vertxOptions =
         new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 2); // Two minutes...
