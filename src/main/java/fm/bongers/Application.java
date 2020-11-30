@@ -45,12 +45,15 @@ public class Application {
         if (LastTracksPlayed.getInstance().getTrackTimes().containsKey(user.getKey())) {
           Integer time = LastTracksPlayed.getInstance().getTrackTimes().get(user.getKey());
           if (time < latestTrack.getTime()) {
-            String tweet = StringUtil.buildTweet(user, latestTrack);
-            tweets.add(tweet);
-            LOGGER.info("Adding tweet: " + tweet);
-            LastTracksPlayed.getInstance()
-                .getTrackTimes()
-                .put(user.getKey(), latestTrack.getTime());
+            if (latestTrack.getPlayCount() != null
+                && Integer.parseInt(latestTrack.getPlayCount()) != 0) { // 0th bug.
+              String tweet = StringUtil.buildTweet(user, latestTrack);
+              tweets.add(tweet);
+              LOGGER.info("Adding tweet: " + tweet);
+              LastTracksPlayed.getInstance()
+                  .getTrackTimes()
+                  .put(user.getKey(), latestTrack.getTime());
+            }
           }
         } else {
           LastTracksPlayed.getInstance().getTrackTimes().put(user.getKey(), latestTrack.getTime());
