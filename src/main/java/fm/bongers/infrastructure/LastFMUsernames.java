@@ -22,9 +22,9 @@ public final class LastFMUsernames {
       users.put("JackJackCullen", "Cullen");
       users.put("Razzabee", "RazB");
       users.put("alderson1996", "Aidan");
-      users.put("KrisTaylor197", "The T man");
+      users.put("KrisTaylor197", "Kris");
       users.put("Lucywhitham", "Lucy");
-      users.put("alexfisher2244", "Fisher");
+      users.put("alexfisher2244", "Al");
       users.put("Pat_McCaff", "Pat");
       users.put("Jamestmf", "Flem");
 //      users.put("KTaylor121", "Kurt");
