@@ -33,6 +33,7 @@ public class Application {
   private static TwitterClient twitterClient;
 
   static void checkForUpdates() {
+    TwitterService twitterService = new TwitterService(twitterClient);
     System.out.println("Let's check for bongers...");
     LOGGER.info("Let's check for bongers...");
 
@@ -61,11 +62,12 @@ public class Application {
 
       } catch (Exception e) {
         LOGGER.error(e);
+        twitterService.sendTweet("@JacobCarey I'm fucked. " + e.getMessage());
         e.printStackTrace();
       }
     }
     for (String tweet : tweets) {
-      new TwitterService(twitterClient).sendTweet(tweet);
+      twitterService.sendTweet(tweet);
     }
   }
 
