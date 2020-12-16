@@ -62,7 +62,7 @@ public class Application {
 
       } catch (Exception e) {
         LOGGER.error(e);
-        twitterService.sendTweet("@JacobCarey I'm fucked and need to temporarily shut down. Beep bop.");
+    //    twitterService.sendTweet("@JacobCarey I'm fucked and need to temporarily shut down. Beep bop.");
         e.printStackTrace();
       }
     }
