@@ -34,8 +34,8 @@ public class Application {
 
   static void checkForUpdates() {
     TwitterService twitterService = new TwitterService(twitterClient);
-    System.out.println("Let's check for bongers...");
-    LOGGER.info("Let's check for bongers...");
+    System.out.println("Let's start checking for bongers...");
+    LOGGER.info("Let's start checking for bongers...");
 
     List<String> tweets = new ArrayList<>();
     LastFMService lastFMService = new LastFMService(Config.getInstance().getLastFmApi());
