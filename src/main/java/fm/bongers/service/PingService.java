@@ -10,7 +10,7 @@ import java.net.http.HttpResponse;
 public class PingService {
 
   public void keepServiceAline() throws URISyntaxException, IOException, InterruptedException {
-    System.out.println("Pinging serivce to check if aline...");
+    System.out.println("Pinging service to check if aline...");
     HttpClient httpClient = HttpClient.newHttpClient();
     HttpRequest trackInfoRequest =
         HttpRequest.newBuilder().GET().uri(new URI("https://bongers-fm.herokuapp.com/")).build();
