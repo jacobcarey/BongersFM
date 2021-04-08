@@ -40,7 +40,7 @@ public class TicketsService {
                       .contains(GENERAL_ADMISSION_WEEKEND.toUpperCase())) {
                 sendTicketsAvailableTweet(twitterService);
               } else {
-                LOGGER.info("Ticket type is not '" + GENERAL_ADMISSION_WEEKEND + "'");
+                LOGGER.info("Ticket type is not '" + GENERAL_ADMISSION_WEEKEND + "'.");
               }
             }
           }
