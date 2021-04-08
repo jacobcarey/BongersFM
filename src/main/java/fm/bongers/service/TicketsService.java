@@ -22,6 +22,7 @@ public class TicketsService {
 
   public static void checkForTickets(TwitterClient twitterClient) {
     try {
+      LOGGER.info("Checking for tickets.");
       TwitterService twitterService = new TwitterService(twitterClient);
       Document residentAdvisor = Jsoup.connect(URL).get();
       if (residentAdvisor != null) {
@@ -37,6 +38,8 @@ public class TicketsService {
                       .toUpperCase()
                       .contains(GENERAL_ADMISSION_WEEKEND.toUpperCase())) {
                 sendTicketsAvailableTweet(twitterService);
+              } else {
+                LOGGER.info("Tickets not available.");
               }
             }
           } else {
