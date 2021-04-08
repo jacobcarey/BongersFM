@@ -30,6 +30,7 @@ public class TicketsService {
         if (ticketsOnSale != null && ticketsOnSale.size() > TICKETS_ON_SALE_CURRENTLY) {
           sendTicketsAvailableTweet(twitterService);
         } else {
+          LOGGER.info("Ticket types available has not gone above 2.");
           if (ticketsOnSale != null && ticketsOnSale.size() > 0) {
             for (org.jsoup.nodes.Element element : ticketsOnSale) {
               if (element.toString() != null
@@ -39,11 +40,9 @@ public class TicketsService {
                       .contains(GENERAL_ADMISSION_WEEKEND.toUpperCase())) {
                 sendTicketsAvailableTweet(twitterService);
               } else {
-                LOGGER.info("Tickets not available.");
+                LOGGER.info("Ticket type is not '" + GENERAL_ADMISSION_WEEKEND + "'");
               }
             }
-          } else {
-            LOGGER.info("Tickets not available.");
           }
         }
       }
