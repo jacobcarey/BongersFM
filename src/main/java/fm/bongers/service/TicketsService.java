@@ -71,6 +71,7 @@ public class TicketsService {
     LocalDateTime now = LocalDateTime.now();
     String timestamp = dtf.format(now);
     twitterService.sendTweet(
-        "@JacobCarey @Jamestmf @RyanBaines96 Tickets are available, check RA! " + timestamp);
+        "@bethrshipley @ellwilson @JacobCarey @Jamestmf @RyanBaines96 @Shauno_95 Tickets are available, check RA! "
+            + timestamp);
   }
 }
