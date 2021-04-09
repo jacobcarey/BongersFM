@@ -41,6 +41,7 @@ public class TicketsService {
                       .toUpperCase()
                       .contains(GENERAL_ADMISSION_WEEKEND.toUpperCase())) {
                 sendTicketsAvailableTweet(twitterService);
+                logTicketsFound(ticketsOnSale);
               } else {
                 LOGGER.info("Ticket type is not '" + GENERAL_ADMISSION_WEEKEND + "'.");
               }
