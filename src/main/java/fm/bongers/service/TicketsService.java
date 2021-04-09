@@ -5,6 +5,7 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class TicketsService {
         Elements ticketsOnSale = residentAdvisor.getElementsByClass("onsale");
         if (ticketsOnSale != null && ticketsOnSale.size() > TICKETS_ON_SALE_CURRENTLY) {
           sendTicketsAvailableTweet(twitterService);
+          logTicketsFound(ticketsOnSale);
         } else {
           LOGGER.info("Ticket types available has not gone above 2.");
           if (ticketsOnSale != null && ticketsOnSale.size() > 0) {
@@ -50,6 +52,16 @@ public class TicketsService {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private static void logTicketsFound(Elements ticketsOnSale) {
+    LOGGER.info("Tickets found:");
+    for (Element element : ticketsOnSale) {
+      if (element.hasText()) {
+        LOGGER.info("Ticket: " + element.text());
+      }
+    }
+    LOGGER.info("Tickets found end.");
   }
 
   private static void sendTicketsAvailableTweet(TwitterService twitterService) {
