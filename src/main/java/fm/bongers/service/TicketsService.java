@@ -70,6 +70,9 @@ public class TicketsService {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
     String timestamp = dtf.format(now);
+
+    twitterService.sendTweet("@JacobCarey Tickets are available, check RA! " + timestamp);
+
     twitterService.sendTweet(
         "@bethrshipley @ellwilson @JacobCarey @Jamestmf @RyanBaines96 @Shauno_95 Tickets are available, check RA! "
             + timestamp);
