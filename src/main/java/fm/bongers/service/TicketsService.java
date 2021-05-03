@@ -78,7 +78,7 @@ public class TicketsService {
                     + timestamp);
 
     twitterService.sendTweet(
-        "@JacobCarey @alexgoesfishing @anantarctic @bethleeshipley @ellwilson Tickets are available, check RA! "
+        "@JacobCarey @anantarctic @bethleeshipley @ellwilson Tickets are available, check RA! "
             + timestamp);
   }
 }
