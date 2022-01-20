@@ -1,11 +1,11 @@
 package fm.bongers.service;
 
-import com.github.redouane59.twitter.TwitterClient;
 import fm.bongers.infrastructure.Config;
 import fm.bongers.infrastructure.LastFMUsernames;
 import fm.bongers.infrastructure.LastTracksPlayed;
 import fm.bongers.model.Track;
 import fm.bongers.util.StringUtil;
+import io.github.redouane59.twitter.TwitterClient;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 

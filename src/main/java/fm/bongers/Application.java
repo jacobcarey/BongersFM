@@ -1,8 +1,8 @@
 package fm.bongers;
 
-import com.github.redouane59.twitter.TwitterClient;
 import fm.bongers.service.ConnectService;
 import fm.bongers.service.PingService;
+import io.github.redouane59.twitter.TwitterClient;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.logging.Logger;
@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static fm.bongers.service.BongersService.checkForUpdates;
-import static fm.bongers.service.TicketsService.checkForTickets;
 import static io.vertx.core.logging.LoggerFactory.LOGGER_DELEGATE_FACTORY_CLASS_NAME;
 import static java.lang.System.setProperty;
 

@@ -1,6 +1,6 @@
 package fm.bongers.service;
 
-import com.github.redouane59.twitter.TwitterClient;
+import io.github.redouane59.twitter.TwitterClient;
 
 public class TwitterService {
 
