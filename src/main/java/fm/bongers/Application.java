@@ -3,7 +3,6 @@ package fm.bongers;
 import fm.bongers.service.ConnectService;
 import fm.bongers.service.PingService;
 import io.github.redouane59.twitter.TwitterClient;
-import io.github.redouane59.twitter.dto.user.UserV2;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.logging.Logger;
@@ -12,10 +11,7 @@ import io.vertx.core.logging.SLF4JLogDelegateFactory;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import static fm.bongers.service.BongersService.checkForUpdates;
 import static io.vertx.core.logging.LoggerFactory.LOGGER_DELEGATE_FACTORY_CLASS_NAME;
 import static java.lang.System.setProperty;
 
@@ -51,18 +47,20 @@ public class Application {
 
     twitterClient = ConnectService.connectTwitter();
 
-    vertx.setPeriodic(1000 * 60 * 4, (l) -> checkForUpdates(twitterClient)); // 4 minutes...
+    //    vertx.setPeriodic(1000 * 60 * 4, (l) -> checkForUpdates(twitterClient)); // 4 minutes...
 
-    vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 15 minutes...
+    //    vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 15 minutes...
 
-    // vertx.setPeriodic(1000 * 30, (l) -> checkForTickets(twitterClient)); // 30 seconds...
+    //    vertx.setPeriodic(1000 * 30, (l) -> checkForTickets(twitterClient)); // 30 seconds...
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
+    //    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    //    LocalDateTime now = LocalDateTime.now();
 
-    UserV2 adminUser = twitterClient.getUserFromUserName("JacobCarey");
-    LOGGER.info("Sending deployment DM to: " + adminUser.getId() + " " + adminUser.getName());
+    //    UserV2 adminUser = twitterClient.getUserFromUserName("JacobCarey");
+    //    LOGGER.info("Sending deployment DM to: " + adminUser.getId() + " " + adminUser.getName());
 
-    twitterClient.postDm("Deployed: " + dtf.format(now), adminUser.getId());
+    //    twitterClient.postDm("Deployed: " + dtf.format(now), adminUser.getId());
+
+    //    twitterClient.postTweet("Deployed: " + dtf.format(now));
   }
 }
