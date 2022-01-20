@@ -58,6 +58,8 @@ public class Application {
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
+
+    LOGGER.info("Sending deployment DM.");
     twitterClient.postDm("Deployed: " + dtf.format(now), "JacobCarey");
   }
 }
