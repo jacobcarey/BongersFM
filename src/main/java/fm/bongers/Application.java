@@ -60,6 +60,7 @@ public class Application {
     LocalDateTime now = LocalDateTime.now();
 
     LOGGER.info("Sending deployment DM.");
-    twitterClient.postDm("Deployed: " + dtf.format(now), "@JacobCarey");
+    String adminUserId = twitterClient.getUserFromUserName("JacobCarey").getId();
+    twitterClient.postDm("Deployed: " + dtf.format(now), adminUserId);
   }
 }
