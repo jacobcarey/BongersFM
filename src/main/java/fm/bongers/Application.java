@@ -3,6 +3,7 @@ package fm.bongers;
 import fm.bongers.service.ConnectService;
 import fm.bongers.service.PingService;
 import io.github.redouane59.twitter.TwitterClient;
+import io.github.redouane59.twitter.dto.user.UserV2;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.logging.Logger;
@@ -59,9 +60,9 @@ public class Application {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
-    String adminUserId = twitterClient.getUserFromUserName("JacobCarey").getId();
-    LOGGER.info("Sending deployment DM to: " + adminUserId);
+    UserV2 adminUser = twitterClient.getUserFromUserName("JacobCarey");
+    LOGGER.info("Sending deployment DM to: " + adminUser.getId() + " " + adminUser.getName());
 
-    twitterClient.postDm("Deployed: " + dtf.format(now), adminUserId);
+    twitterClient.postDm("Deployed: " + dtf.format(now), adminUser.getId());
   }
 }
