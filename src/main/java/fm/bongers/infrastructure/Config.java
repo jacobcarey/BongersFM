@@ -10,6 +10,7 @@ public final class Config {
   private String twitterSecretAccessKey;
   private String twitterAccessToken;
   private String twitterAccessTokenSecret;
+  private String twitterBearerToken;
   private String port;
 
   private Config() {}
@@ -24,6 +25,7 @@ public final class Config {
       INSTANCE.setTwitterApiKey(env.getOrDefault("T_API_KEY", "x"));
       INSTANCE.setTwitterSecretAccessKey(env.getOrDefault("T_SECRET_ACCESS_KEY", "x"));
       INSTANCE.setPort(env.getOrDefault("PORT", env.getOrDefault("$PORT", "8080")));
+      INSTANCE.setTwitterBearerToken(env.getOrDefault("T_BEARER", "x"));
     }
     return INSTANCE;
   }
@@ -74,5 +76,13 @@ public final class Config {
 
   public void setTwitterAccessTokenSecret(String twitterAccessTokenSecret) {
     this.twitterAccessTokenSecret = twitterAccessTokenSecret;
+  }
+
+  public String getTwitterBearerToken() {
+    return twitterBearerToken;
+  }
+
+  public void setTwitterBearerToken(String twitterBearerToken) {
+    this.twitterBearerToken = twitterBearerToken;
   }
 }

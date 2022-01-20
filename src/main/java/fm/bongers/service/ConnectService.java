@@ -14,6 +14,7 @@ public class ConnectService {
             .accessTokenSecret(Config.getInstance().getTwitterAccessTokenSecret())
             .apiKey(Config.getInstance().getTwitterApiKey())
             .apiSecretKey(Config.getInstance().getTwitterSecretAccessKey())
+            .bearerToken(Config.getInstance().getTwitterBearerToken())
             .build());
   }
 }
