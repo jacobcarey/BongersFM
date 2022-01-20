@@ -17,7 +17,7 @@ public final class LastFMUsernames {
       users.put("JOC01", "Jacob");
       users.put("hazzamc", "Harry");
       users.put("Jackbates96", "Bates");
-      users.put("BRS01", "Beth");
+      //      users.put("BRS01", "Beth");
       users.put("ellwilson", "El");
       users.put("JackJackCullen", "Cullen");
       users.put("Razzabee", "RazB");

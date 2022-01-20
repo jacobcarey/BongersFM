@@ -60,6 +60,6 @@ public class Application {
     LocalDateTime now = LocalDateTime.now();
 
     LOGGER.info("Sending deployment DM.");
-    twitterClient.postDm("Deployed: " + dtf.format(now), "JacobCarey");
+    twitterClient.postDm("Deployed: " + dtf.format(now), "@JacobCarey");
   }
 }
