@@ -63,7 +63,5 @@ public class Application {
     LOGGER.info("Sending deployment DM to: " + adminUserId);
 
     twitterClient.postDm("Deployed: " + dtf.format(now), adminUserId);
-
-    twitterClient.postTweet("Test: " + dtf.format(now));
   }
 }
