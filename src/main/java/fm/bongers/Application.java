@@ -34,6 +34,7 @@ public class Application {
   }
 
   public static void main(String[] args) {
+
     System.out.println("Starting...");
     VertxOptions vertxOptions =
         new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 2); // Two minutes...
