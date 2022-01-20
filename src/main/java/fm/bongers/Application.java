@@ -59,8 +59,9 @@ public class Application {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
-    LOGGER.info("Sending deployment DM.");
-    String adminUserId = twitterClient.getUserFromUserName("JacobCarey").getId();
+    String adminUserId = twitterClient.getUserFromUserName("@JacobCarey").getId();
+    LOGGER.info("Sending deployment DM to {}.", adminUserId);
+
     twitterClient.postDm("Deployed: " + dtf.format(now), adminUserId);
   }
 }
