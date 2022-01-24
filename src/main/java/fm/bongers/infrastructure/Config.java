@@ -12,7 +12,6 @@ public final class Config {
   private String twitterAccessTokenSecret;
   private String twitterBearerToken;
   private String port;
-  private String twitterVersion;
 
   private Config() {}
 
@@ -20,14 +19,15 @@ public final class Config {
     if (INSTANCE == null) {
       INSTANCE = new fm.bongers.infrastructure.Config();
       Map<String, String> env = System.getenv();
-      INSTANCE.setLastFmApi(env.getOrDefault("LASTFM_API", "x"));
+      INSTANCE.setLastFmApi(env.getOrDefault("LAST_FM_KEY", "x"));
       INSTANCE.setTwitterAccessToken(env.getOrDefault("TWITTER_TOKEN", "x"));
       INSTANCE.setTwitterAccessTokenSecret(env.getOrDefault("TWITTER_TOKEN_SECRET", "x"));
+
       INSTANCE.setTwitterApiKey(env.getOrDefault("TWITTER_CONSUMER_KEY", "x"));
       INSTANCE.setTwitterApiKeySecret(env.getOrDefault("TWITTER_CONSUMER_SECRET", "x"));
+
       INSTANCE.setPort(env.getOrDefault("PORT", env.getOrDefault("PORT", "8080")));
       INSTANCE.setTwitterBearerToken(env.getOrDefault("TWITTER_BEARER_TOKEN", "x"));
-      INSTANCE.setTwitterVersion(env.getOrDefault("T_VERSION", "1"));
     }
     return INSTANCE;
   }
@@ -86,13 +86,5 @@ public final class Config {
 
   public void setTwitterBearerToken(String twitterBearerToken) {
     this.twitterBearerToken = twitterBearerToken;
-  }
-
-  public String getTwitterVersion() {
-    return twitterVersion;
-  }
-
-  public void setTwitterVersion(String twitterVersion) {
-    this.twitterVersion = twitterVersion;
   }
 }
