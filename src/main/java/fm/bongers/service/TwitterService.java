@@ -21,7 +21,7 @@ public class TwitterService {
 
   public TwitterService() {
 
-    if (Objects.equals(Config.getInstance().getTwitterAccessToken(), "1")) {
+    if (Config.getInstance().getTwitterVersion().equals("1")) {
       LOGGER.info("Using Twitter V1.");
 
       new TwitterClient(
