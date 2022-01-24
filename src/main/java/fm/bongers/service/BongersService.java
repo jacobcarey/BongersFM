@@ -1,14 +1,16 @@
 package fm.bongers.service;
 
+import com.twitter.clientlib.ApiException;
 import fm.bongers.infrastructure.Config;
 import fm.bongers.infrastructure.LastFMUsernames;
 import fm.bongers.infrastructure.LastTracksPlayed;
 import fm.bongers.model.Track;
 import fm.bongers.util.StringUtil;
-import io.github.redouane59.twitter.TwitterClient;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +20,8 @@ public class BongersService {
   private static final Logger LOGGER =
       LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
 
-  public static void checkForUpdates(TwitterClient twitterClient) {
-    TwitterService twitterService = new TwitterService(twitterClient);
+  public static void checkForUpdates(TwitterService twitterService)
+      throws URISyntaxException, IOException, ApiException {
     System.out.println("Let's start checking for bongers...");
     LOGGER.info("Let's start checking for bongers...");
 

@@ -7,7 +7,7 @@ public final class Config {
   private static fm.bongers.infrastructure.Config INSTANCE;
   private String lastFmApi;
   private String twitterApiKey;
-  private String twitterSecretAccessKey;
+  private String twitterApiKeySecret;
   private String twitterAccessToken;
   private String twitterAccessTokenSecret;
   private String twitterBearerToken;
@@ -23,7 +23,7 @@ public final class Config {
       INSTANCE.setTwitterAccessToken(env.getOrDefault("T_ACCESS_TOKEN", "x"));
       INSTANCE.setTwitterAccessTokenSecret(env.getOrDefault("T_ACCESS_TOKEN_SECRET", "x"));
       INSTANCE.setTwitterApiKey(env.getOrDefault("T_API_KEY", "x"));
-      INSTANCE.setTwitterSecretAccessKey(env.getOrDefault("T_SECRET_ACCESS_KEY", "x"));
+      INSTANCE.setTwitterApiKeySecret(env.getOrDefault("T_SECRET_ACCESS_KEY", "x"));
       INSTANCE.setPort(env.getOrDefault("PORT", env.getOrDefault("$PORT", "8080")));
       INSTANCE.setTwitterBearerToken(env.getOrDefault("T_BEARER", "x"));
     }
@@ -54,12 +54,12 @@ public final class Config {
     this.twitterApiKey = twitterApiKey;
   }
 
-  public String getTwitterSecretAccessKey() {
-    return twitterSecretAccessKey;
+  public String getTwitterApiKeySecret() {
+    return twitterApiKeySecret;
   }
 
-  public void setTwitterSecretAccessKey(String twitterSecretAccessKey) {
-    this.twitterSecretAccessKey = twitterSecretAccessKey;
+  public void setTwitterApiKeySecret(String twitterApiKeySecret) {
+    this.twitterApiKeySecret = twitterApiKeySecret;
   }
 
   public String getTwitterAccessToken() {

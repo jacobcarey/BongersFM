@@ -1,8 +1,8 @@
 package fm.bongers;
 
-import fm.bongers.service.ConnectService;
+import com.twitter.clientlib.ApiException;
 import fm.bongers.service.PingService;
-import io.github.redouane59.twitter.TwitterClient;
+import fm.bongers.service.TwitterService;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.logging.Logger;
@@ -11,6 +11,8 @@ import io.vertx.core.logging.SLF4JLogDelegateFactory;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static io.vertx.core.logging.LoggerFactory.LOGGER_DELEGATE_FACTORY_CLASS_NAME;
 import static java.lang.System.setProperty;
@@ -19,8 +21,6 @@ public class Application {
 
   private static final Logger LOGGER =
       LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
-
-  private static TwitterClient twitterClient;
 
   static void keepServerAlive() {
     PingService pingService = new PingService();
@@ -45,7 +45,7 @@ public class Application {
     vertx.deployVerticle("fm.bongers.verticle.MainVerticle");
     LOGGER.info("Deployed verticle...");
 
-    twitterClient = ConnectService.connectTwitter();
+    TwitterService twitterService = new TwitterService();
 
     //    vertx.setPeriodic(1000 * 60 * 4, (l) -> checkForUpdates(twitterClient)); // 4 minutes...
 
@@ -53,14 +53,21 @@ public class Application {
 
     //    vertx.setPeriodic(1000 * 30, (l) -> checkForTickets(twitterClient)); // 30 seconds...
 
-    //    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    //    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
 
     //    UserV2 adminUser = twitterClient.getUserFromUserName("JacobCarey");
     //    LOGGER.info("Sending deployment DM to: " + adminUser.getId() + " " + adminUser.getName());
 
     //    twitterClient.postDm("Deployed: " + dtf.format(now), adminUser.getId());
 
-    //    twitterClient.postTweet("Deployed: " + dtf.format(now));
+    try {
+      twitterService.sendTweet("Deployed: " + dtf.format(now));
+    } catch (ApiException e) {
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
   }
 }

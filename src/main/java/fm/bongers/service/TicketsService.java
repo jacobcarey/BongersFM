@@ -1,6 +1,6 @@
 package fm.bongers.service;
 
-import io.github.redouane59.twitter.TwitterClient;
+import com.twitter.clientlib.ApiException;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import org.jsoup.Jsoup;
@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -21,10 +22,9 @@ public class TicketsService {
   private static final Logger LOGGER =
       LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
 
-  public static void checkForTickets(TwitterClient twitterClient) {
+  public static void checkForTickets(TwitterService twitterService) {
     try {
       LOGGER.info("Checking for tickets.");
-      TwitterService twitterService = new TwitterService(twitterClient);
       Document residentAdvisor = Jsoup.connect(URL).get();
       if (residentAdvisor != null) {
         Elements ticketsOnSale = residentAdvisor.getElementsByClass("onsale");
@@ -50,7 +50,7 @@ public class TicketsService {
         }
       }
 
-    } catch (IOException e) {
+    } catch (IOException | URISyntaxException | ApiException e) {
       e.printStackTrace();
     }
   }
@@ -65,7 +65,8 @@ public class TicketsService {
     LOGGER.info("Tickets found end.");
   }
 
-  private static void sendTicketsAvailableTweet(TwitterService twitterService) {
+  private static void sendTicketsAvailableTweet(TwitterService twitterService)
+      throws URISyntaxException, IOException, ApiException {
     LOGGER.info("Tickets available.");
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
@@ -74,9 +75,10 @@ public class TicketsService {
     twitterService.sendTweet("@JacobCarey Tickets are available, check RA! " + timestamp);
 
     twitterService.sendTweet(
-            "@JacobCarey @jackbates6277 @Jamestmf @RyanBaines96 @Shauno_95 Tickets are available, check RA! "
-                    + timestamp);
+        "@JacobCarey @jackbates6277 @Jamestmf @RyanBaines96 @Shauno_95 Tickets are available, check RA! "
+            + timestamp);
 
-//    @JacobCarey @alexgoesfishing @anantarctic @bethrshipley @ellwilson @jackbates6277 @Jamestmf @RyanBaines96 @Shauno_95
+    //    @JacobCarey @alexgoesfishing @anantarctic @bethrshipley @ellwilson @jackbates6277
+    // @Jamestmf @RyanBaines96 @Shauno_95
   }
 }
