@@ -68,7 +68,7 @@ public class Application {
 
     try {
       LOGGER.info("Sending deployment message.");
-      twitterService.sendTweet("Deployed: " + dtf.format(now));
+      twitterService.sendTweet("@JacobCarey Deployed: " + dtf.format(now));
     } catch (ApiException e) {
       LOGGER.error(e.getResponseBody(), e);
       System.err.println("Status code: " + e.getCode());
