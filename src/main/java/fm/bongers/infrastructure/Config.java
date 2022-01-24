@@ -12,6 +12,7 @@ public final class Config {
   private String twitterAccessTokenSecret;
   private String twitterBearerToken;
   private String port;
+  private String twitterVersion;
 
   private Config() {}
 
@@ -20,12 +21,13 @@ public final class Config {
       INSTANCE = new fm.bongers.infrastructure.Config();
       Map<String, String> env = System.getenv();
       INSTANCE.setLastFmApi(env.getOrDefault("LASTFM_API", "x"));
-      INSTANCE.setTwitterAccessToken(env.getOrDefault("T_ACCESS_TOKEN", "x"));
-      INSTANCE.setTwitterAccessTokenSecret(env.getOrDefault("T_ACCESS_TOKEN_SECRET", "x"));
-      INSTANCE.setTwitterApiKey(env.getOrDefault("T_API_KEY", "x"));
-      INSTANCE.setTwitterApiKeySecret(env.getOrDefault("T_SECRET_ACCESS_KEY", "x"));
-      INSTANCE.setPort(env.getOrDefault("PORT", env.getOrDefault("$PORT", "8080")));
-      INSTANCE.setTwitterBearerToken(env.getOrDefault("T_BEARER", "x"));
+      INSTANCE.setTwitterAccessToken(env.getOrDefault("TWITTER_TOKEN", "x"));
+      INSTANCE.setTwitterAccessTokenSecret(env.getOrDefault("TWITTER_TOKEN_SECRET", "x"));
+      INSTANCE.setTwitterApiKey(env.getOrDefault("TWITTER_CONSUMER_KEY", "x"));
+      INSTANCE.setTwitterApiKeySecret(env.getOrDefault("TWITTER_CONSUMER_SECRET", "x"));
+      INSTANCE.setPort(env.getOrDefault("PORT", env.getOrDefault("PORT", "8080")));
+      INSTANCE.setTwitterBearerToken(env.getOrDefault("TWITTER_BEARER_TOKEN", "x"));
+      INSTANCE.setTwitterVersion(env.getOrDefault("T_VERSION", "1"));
     }
     return INSTANCE;
   }
@@ -84,5 +86,13 @@ public final class Config {
 
   public void setTwitterBearerToken(String twitterBearerToken) {
     this.twitterBearerToken = twitterBearerToken;
+  }
+
+  public String getTwitterVersion() {
+    return twitterVersion;
+  }
+
+  public void setTwitterVersion(String twitterVersion) {
+    this.twitterVersion = twitterVersion;
   }
 }
