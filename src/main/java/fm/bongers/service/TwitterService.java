@@ -22,6 +22,7 @@ public class TwitterService {
   public TwitterService() {
 
     if (Objects.equals(Config.getInstance().getTwitterAccessToken(), "1")) {
+      LOGGER.info("Using Twitter V1.");
 
       new TwitterClient(
           io.github.redouane59.twitter.signature.TwitterCredentials.builder()
@@ -31,7 +32,7 @@ public class TwitterService {
               .apiSecretKey(Config.getInstance().getTwitterApiKeySecret())
               .build());
     } else {
-      LOGGER.info("Loading config from static values.");
+      LOGGER.info("Using Twitter V2.");
       TwitterCredentials twitterCredentials = new TwitterCredentials();
       twitterCredentials.setTwitterToken(Config.getInstance().getTwitterAccessToken());
       twitterCredentials.setTwitterTokenSecret(Config.getInstance().getTwitterAccessTokenSecret());
