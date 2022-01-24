@@ -67,6 +67,8 @@ public class Application {
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
+      System.err.println("Cause: " + e.getCause());
+
       e.printStackTrace();
     }
   }
