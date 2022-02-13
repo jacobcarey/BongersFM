@@ -66,15 +66,15 @@ public class Application {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
-    try {
+    // try {
      LOGGER.info("Deployed.");
      // twitterService.sendTweet("@JacobCarey Deployed: " + dtf.format(now));
-    } catch (ApiException e) {
-      LOGGER.error(e.getResponseBody(), e);
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
+   // } catch (ApiException e) {
+   //   LOGGER.error(e.getResponseBody(), e);
+   //   System.err.println("Status code: " + e.getCode());
+   //   System.err.println("Reason: " + e.getResponseBody());
+   //   System.err.println("Response headers: " + e.getResponseHeaders());
+   //   e.printStackTrace();
+   // }
   }
 }
