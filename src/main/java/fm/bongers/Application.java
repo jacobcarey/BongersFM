@@ -67,7 +67,7 @@ public class Application {
     LocalDateTime now = LocalDateTime.now();
 
     try {
-     // LOGGER.info("Sending deployment message.");
+     // LOGGER.info("Deployed.");
      // twitterService.sendTweet("@JacobCarey Deployed: " + dtf.format(now));
     } catch (ApiException e) {
       LOGGER.error(e.getResponseBody(), e);
