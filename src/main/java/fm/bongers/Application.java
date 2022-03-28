@@ -37,7 +37,7 @@ public class Application {
 
     System.out.println("Starting...");
     VertxOptions vertxOptions =
-        new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 2); // Two minutes...
+        new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 1); // One minute...
     Vertx vertx = Vertx.vertx(vertxOptions);
 
     setProperty(LOGGER_DELEGATE_FACTORY_CLASS_NAME, SLF4JLogDelegateFactory.class.getName());
