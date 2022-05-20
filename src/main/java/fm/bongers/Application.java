@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static fm.bongers.service.BongersService.checkForUpdates;
+import static fm.bongers.service.PassportService.checkForAppointments;
 import static io.vertx.core.logging.LoggerFactory.LOGGER_DELEGATE_FACTORY_CLASS_NAME;
 import static java.lang.System.setProperty;
 
@@ -61,20 +62,22 @@ public class Application {
 
     vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 15 minutes...
 
-    //    vertx.setPeriodic(1000 * 30, (l) -> checkForTickets(twitterClient)); // 30 seconds...
+    vertx.setPeriodic(1000 * 30, (l) -> checkForAppointments(twitterService)); // 60 seconds...
+
+    // vertx.setPeriodic(1000 * 30, (l) -> checkForTickets(twitterClient)); // 30 seconds...
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
     // try {
-     LOGGER.info("Deployed.");
-     // twitterService.sendTweet("@JacobCarey Deployed: " + dtf.format(now));
-   // } catch (ApiException e) {
-   //   LOGGER.error(e.getResponseBody(), e);
-   //   System.err.println("Status code: " + e.getCode());
-   //   System.err.println("Reason: " + e.getResponseBody());
-   //   System.err.println("Response headers: " + e.getResponseHeaders());
-   //   e.printStackTrace();
-   // }
+    LOGGER.info("Deployed.");
+    // twitterService.sendTweet("@JacobCarey Deployed: " + dtf.format(now));
+    // } catch (ApiException e) {
+    //   LOGGER.error(e.getResponseBody(), e);
+    //   System.err.println("Status code: " + e.getCode());
+    //   System.err.println("Reason: " + e.getResponseBody());
+    //   System.err.println("Response headers: " + e.getResponseHeaders());
+    //   e.printStackTrace();
+    // }
   }
 }
