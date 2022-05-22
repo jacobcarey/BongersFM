@@ -26,12 +26,14 @@ public class PassportService {
     try {
       LOGGER.info("Checking for appointments.");
       Document passportGov = Jsoup.connect(URL).get();
-      if (passportGov != null
-          && !StringUtils.containsIgnoreCase(passportGov.body().text(), NO_APPOINTMENT)) {
+      boolean unavailable =
+          StringUtils.containsIgnoreCase(passportGov.body().text(), NO_APPOINTMENT);
+      if (!unavailable) {
         LOGGER.info("Appointments available!");
         sendAppointmentsAvailableTweet(twitterService);
       } else {
         LOGGER.info("Appointments unavailable!");
+        LOGGER.info("Unavailable page: " + unavailable);
       }
 
     } catch (IOException | URISyntaxException | ApiException e) {
