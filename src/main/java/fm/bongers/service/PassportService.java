@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class PassportService {
 
   public static final String URL =
-      "https://www.passportappointment.service.gov.uk/messages/AppointmentsAvailability.html";
+      "https://www.passportappointment.service.gov.uk/outreach/publicbooking.ofml";
 
   public static final String NO_APPOINTMENT = "Sorry, there are no available appointments";
 
