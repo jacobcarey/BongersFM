@@ -6,6 +6,7 @@ import io.vertx.core.logging.LoggerFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -33,7 +34,10 @@ public class PassportService {
         sendAppointmentsAvailableTweet(twitterService);
       } else {
         LOGGER.info("Appointments unavailable!");
-        LOGGER.info("Unavailable page: " + unavailable);
+        Element mainBody = passportGov.body().getElementsByClass("page-header").first();
+        if (mainBody != null) {
+          LOGGER.info("Unavailable page: " + mainBody.text());
+        }
       }
 
     } catch (IOException | URISyntaxException | ApiException e) {
