@@ -61,23 +61,27 @@ public class Application {
 
     vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 15 minutes...
 
-    //    vertx.setPeriodic(1000 * 60, (l) -> checkForAppointments(twitterService)); // 60
+    // vertx.setPeriodic(1000 * 60, (l) -> checkForAppointments(twitterService)); // 60
     // seconds...
 
     // vertx.setPeriodic(1000 * 30, (l) -> checkForTickets(twitterClient)); // 30 seconds...
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-
-    // try {
     LOGGER.info("Deployed.");
-    // twitterService.sendTweet("@JacobCarey Deployed: " + dtf.format(now));
-    // } catch (ApiException e) {
-    //   LOGGER.error(e.getResponseBody(), e);
-    //   System.err.println("Status code: " + e.getCode());
-    //   System.err.println("Reason: " + e.getResponseBody());
-    //   System.err.println("Response headers: " + e.getResponseHeaders());
-    //   e.printStackTrace();
-    // }
+
+    // deployedTweet(twitterService, dtf, now);
+  }
+
+  private static void deployedTweet(TwitterService twitterService) {
+    try {
+      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+      LocalDateTime now = LocalDateTime.now();
+      twitterService.sendTweet("@JacobCarey Deployed: " + dtf.format(now));
+    } catch (ApiException e) {
+      LOGGER.error(e.getResponseBody(), e);
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
   }
 }
