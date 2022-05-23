@@ -53,6 +53,7 @@ public class PassportService {
     String timestamp = dtf.format(now);
 
     twitterService.sendTweet("@JacobCarey Appointments are available! " + timestamp);
+
     twitterService.sendTweet(
         "@alexgoesfishing @jackbates6277 Appointments are available! " + timestamp);
 
