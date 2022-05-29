@@ -54,8 +54,8 @@ public class PassportService {
 
     twitterService.sendTweet("@JacobCarey Appointments are available! " + timestamp);
 
-    twitterService.sendTweet(
-        "@alexgoesfishing @jackbates6277 Appointments are available! " + timestamp);
+    //    twitterService.sendTweet(
+    //        "@alexgoesfishing @jackbates6277 Appointments are available! " + timestamp);
 
     //    twitterService.sendTweet(
     //        "@JacobCarey @jackbates6277 @Jamestmf @RyanBaines96 @Shauno_95 Tickets are available,
