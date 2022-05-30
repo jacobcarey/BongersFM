@@ -37,7 +37,7 @@ public class PassportService {
         sendAppointmentsAvailableTweet(twitterService);
       } else {
         LOGGER.info("Appointments unavailable!");
-        Element mainBody = passportGov.body().getElementsByClass("page-header").first();
+        Element mainBody = passportGov.body().getElementsByTag("body").first();
         if (mainBody != null) {
           LOGGER.info("Unavailable page: " + mainBody.text());
         }
