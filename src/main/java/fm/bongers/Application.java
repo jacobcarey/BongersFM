@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static fm.bongers.service.BongersService.checkForUpdates;
-import static fm.bongers.service.PassportService.checkForAppointments;
 import static io.vertx.core.logging.LoggerFactory.LOGGER_DELEGATE_FACTORY_CLASS_NAME;
 import static java.lang.System.setProperty;
 
@@ -62,7 +61,8 @@ public class Application {
 
     vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 15 minutes...
 
-    vertx.setPeriodic(1000 * 45, (l) -> checkForAppointments(twitterService)); // 45 seconds...
+    //    vertx.setPeriodic(1000 * 45, (l) -> checkForAppointments(twitterService)); // 45
+    // seconds...
 
     // vertx.setPeriodic(1000 * 30, (l) -> checkForTickets(twitterClient)); // 30 seconds...
 
