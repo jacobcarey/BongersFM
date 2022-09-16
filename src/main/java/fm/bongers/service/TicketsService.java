@@ -15,9 +15,9 @@ import java.time.format.DateTimeFormatter;
 
 public class TicketsService {
 
-  public static final String URL = "https://ra.co/widget/event/1326673/embedtickets";
-  public static final int TICKETS_ON_SALE_CURRENTLY = 2;
-  public static final String GENERAL_ADMISSION_WEEKEND = "General Admission Weekend";
+  public static final String URL = "https://ra.co/events/1570417/embedtickets";
+  public static final int TICKETS_ON_SALE_CURRENTLY = 0;
+  public static final String TICKET_TYPE = "Advance Ticket";
 
   private static final Logger LOGGER =
       LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
@@ -32,18 +32,18 @@ public class TicketsService {
           sendTicketsAvailableTweet(twitterService);
           logTicketsFound(ticketsOnSale);
         } else {
-          LOGGER.info("Ticket types available has not gone above 2.");
+          LOGGER.info("Ticket types available has not gone above {}.", TICKETS_ON_SALE_CURRENTLY);
           if (ticketsOnSale != null && ticketsOnSale.size() > 0) {
             for (org.jsoup.nodes.Element element : ticketsOnSale) {
               if (element.toString() != null
                   && element
                       .toString()
                       .toUpperCase()
-                      .contains(GENERAL_ADMISSION_WEEKEND.toUpperCase())) {
+                      .contains(TICKET_TYPE.toUpperCase())) {
                 sendTicketsAvailableTweet(twitterService);
                 logTicketsFound(ticketsOnSale);
               } else {
-                LOGGER.info("Ticket type is not '" + GENERAL_ADMISSION_WEEKEND + "'.");
+                LOGGER.info("Ticket type is not '" + TICKET_TYPE + "'.");
               }
             }
           }
@@ -72,11 +72,11 @@ public class TicketsService {
     LocalDateTime now = LocalDateTime.now();
     String timestamp = dtf.format(now);
 
-    twitterService.sendTweet("@JacobCarey Tickets are available, check RA! " + timestamp);
+    twitterService.sendTweet("@JacobCarey @Jamestmf are available, check RA! " + timestamp);
 
-    twitterService.sendTweet(
-        "@JacobCarey @jackbates6277 @Jamestmf @RyanBaines96 @Shauno_95 Tickets are available, check RA! "
-            + timestamp);
+//    twitterService.sendTweet(
+//        "@JacobCarey @jackbates6277 @Jamestmf @RyanBaines96 @Shauno_95 Tickets are available, check RA! "
+//            + timestamp);
 
     //    @JacobCarey @alexgoesfishing @anantarctic @bethrshipley @ellwilson @jackbates6277
     // @Jamestmf @RyanBaines96 @Shauno_95
