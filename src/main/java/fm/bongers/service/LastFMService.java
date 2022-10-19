@@ -3,14 +3,13 @@ package fm.bongers.service;
 import fm.bongers.model.Track;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import org.apache.http.client.utils.URIBuilder;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import org.apache.http.client.utils.URIBuilder;
 
 public class LastFMService {
 

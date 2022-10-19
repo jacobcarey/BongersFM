@@ -3,15 +3,14 @@ package fm.bongers.service;
 import com.twitter.clientlib.ApiException;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
-import org.apache.commons.lang3.StringUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 public class PassportService {
 
@@ -20,7 +19,8 @@ public class PassportService {
 
   public static final String NO_APPOINTMENT = "Sorry, there are no available appointments";
   public static final String BUSY =
-      "Sorry, we're experiencing high demand for this service at the moment and the system is busy. Please try again later.";
+      "Sorry, we're experiencing high demand for this service at the moment and the system is busy."
+          + " Please try again later.";
 
   private static final Logger LOGGER =
       LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
