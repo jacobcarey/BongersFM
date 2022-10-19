@@ -11,7 +11,7 @@ import io.vertx.core.logging.LoggerFactory;
 public class TwitterService {
 
   private static final Logger LOGGER =
-      LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
+      LoggerFactory.getLogger(TwitterService.class); // Required for Logback to work in Vertx
 
   TwitterApi twitterApi;
 

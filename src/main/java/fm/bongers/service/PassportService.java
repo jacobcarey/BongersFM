@@ -23,7 +23,7 @@ public class PassportService {
           + " Please try again later.";
 
   private static final Logger LOGGER =
-      LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
+      LoggerFactory.getLogger(PassportService.class); // Required for Logback to work in Vertx
 
   public static void checkForAppointments(TwitterService twitterService) {
     try {

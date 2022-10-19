@@ -15,7 +15,7 @@ import java.util.Map;
 public class BongersService {
 
   private static final Logger LOGGER =
-      LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
+      LoggerFactory.getLogger(BongersService.class); // Required for Logback to work in Vertx
 
   public static void checkForUpdates(TwitterService twitterService) throws ApiException {
     System.out.println("Let's start checking for bongers...");

@@ -19,7 +19,7 @@ public class TicketsService {
   public static final String TICKET_TYPE = "Advance Ticket";
 
   private static final Logger LOGGER =
-      LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
+      LoggerFactory.getLogger(TicketsService.class); // Required for Logback to work in Vertx
   public static final String USER_AGENT =
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko)"
           + " Chrome/105.0.0.0 Safari/537.36";

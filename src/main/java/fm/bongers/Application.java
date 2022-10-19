@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 public class Application {
 
   private static final Logger LOGGER =
-      LoggerFactory.getLogger(LoggerFactory.class); // Required for Logback to work in Vertx
+      LoggerFactory.getLogger(Application.class); // Required for Logback to work in Vertx
 
   static void keepServerAlive() {
     PingService pingService = new PingService();
