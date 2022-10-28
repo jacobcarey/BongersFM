@@ -28,6 +28,7 @@ public final class LastFMUsernames {
       users.put("Jamestmf", "Flem");
       users.put("KTaylor121", "Kurt");
       users.put("Mollyjeffs", "Molly");
+      users.put("sutty00", "Sutty");
       INSTANCE.setUsernames(users);
     }
     return INSTANCE;
