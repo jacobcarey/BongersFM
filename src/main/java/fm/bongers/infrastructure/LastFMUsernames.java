@@ -42,5 +42,3 @@ public final class LastFMUsernames {
     this.usernames = usernames;
   }
 }
-
-//      users.put("BRS01", "Beth");

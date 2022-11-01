@@ -68,7 +68,7 @@ public class Application {
 
     LOGGER.info("Deployed.");
 
-    deployedTweet(twitterService);
+    // deployedTweet(twitterService);
   }
 
   private static void deployedTweet(TwitterService twitterService) {
