@@ -12,17 +12,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class TicketsService {
+public class ElementBasedTicketsService {
 
-  public static final String URL = "https://ra.co/widget/event/1581244/embedtickets";
-  public static final int TICKETS_ON_SALE_CURRENTLY = 0;
-  public static final String TICKET_TYPE = "Advance Ticket";
 
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(TicketsService.class); // Required for Logback to work in Vertx
-  public static final String USER_AGENT =
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko)"
-          + " Chrome/105.0.0.0 Safari/537.36";
+      LoggerFactory.getLogger(ElementBasedTicketsService.class); // Required for Logback to work in Vertx
+
 
   public static void checkForTickets(TwitterService twitterService) {
     try {

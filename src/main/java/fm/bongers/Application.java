@@ -35,30 +35,30 @@ public class Application {
   public static void main(String[] args) {
 
     LOGGER.info("Starting...");
-    VertxOptions vertxOptions =
-        new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 1); // One minute...
-    Vertx vertx = Vertx.vertx(vertxOptions);
-
-    setProperty(LOGGER_DELEGATE_FACTORY_CLASS_NAME, SLF4JLogDelegateFactory.class.getName());
-
-    LOGGER.info("Deploying verticle...");
-    vertx.deployVerticle("fm.bongers.verticle.MainVerticle");
-    LOGGER.info("Deployed verticle...");
-
-    TwitterService twitterService = new TwitterService();
-
-    vertx.setPeriodic(
-        1000 * 60 * 4,
-        (l) -> {
-          try {
-            checkForUpdates(twitterService);
-          } catch (ApiException e) {
-            LOGGER.error(e.getResponseBody(), e);
-            e.printStackTrace();
-          }
-        }); // 4 minutes...
-
-    vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 15 minutes...
+//    VertxOptions vertxOptions =
+//        new VertxOptions().setBlockedThreadCheckInterval(1000 * 60 * 1); // One minute...
+//    Vertx vertx = Vertx.vertx(vertxOptions);
+//
+//    setProperty(LOGGER_DELEGATE_FACTORY_CLASS_NAME, SLF4JLogDelegateFactory.class.getName());
+//
+//    LOGGER.info("Deploying verticle...");
+//    vertx.deployVerticle("fm.bongers.verticle.MainVerticle");
+//    LOGGER.info("Deployed verticle...");
+//
+//    TwitterService twitterService = new TwitterService();
+//
+//    vertx.setPeriodic(
+//        1000 * 60 * 4,
+//        (l) -> {
+//          try {
+//            checkForUpdates(twitterService);
+//          } catch (ApiException e) {
+//            LOGGER.error(e.getResponseBody(), e);
+//            e.printStackTrace();
+//          }
+//        }); // 4 minutes...
+//
+//    vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 15 minutes...
 
     // Passport appointments. Not currently needed.
     // vertx.setPeriodic(1000 * 45, (l) -> checkForAppointments(twitterService)); // 45 seconds...
