@@ -1,5 +1,6 @@
 package fm.bongers;
 
+import static fm.bongers.service.BongersService.checkForUpdates;
 import static io.vertx.core.logging.LoggerFactory.LOGGER_DELEGATE_FACTORY_CLASS_NAME;
 import static java.lang.System.setProperty;
 
@@ -46,17 +47,17 @@ public class Application {
 
     TwitterService twitterService = new TwitterService();
 
-    //    vertx.setPeriodic(
-    //        1000 * 60 * 4,
-    //        (l) -> {
-    //          try {
-    //            LOGGER.info("Checking for updates, periodic...");
-    //            checkForUpdates(twitterService);
-    //          } catch (ApiException e) {
-    //            LOGGER.error(e.getResponseBody(), e);
-    //            e.printStackTrace();
-    //          }
-    //        }); // 4 minutes...
+    vertx.setPeriodic(
+        1000 * 60 * 4,
+        (l) -> {
+          try {
+            LOGGER.info("Checking for updates, periodic...");
+            checkForUpdates(twitterService);
+          } catch (ApiException e) {
+            LOGGER.error(e.getResponseBody(), e);
+            e.printStackTrace();
+          }
+        }); // 4 minutes...
 
     vertx.setPeriodic(1000 * 60 * 15, (l) -> keepServerAlive()); // 15 minutes...
 
