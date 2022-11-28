@@ -1,4 +1,3 @@
 package fm.bongers.service;
 
-public class TMTicketResaleService {
-}
+public class TMTicketResaleService {}
