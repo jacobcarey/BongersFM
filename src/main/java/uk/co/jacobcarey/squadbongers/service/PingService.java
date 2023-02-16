@@ -16,7 +16,7 @@ public class PingService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PingService.class);
 
-  @Scheduled(fixedRate = 1000 * 60 * 15)
+  @Scheduled(initialDelay = 1000 * 60 * 5, fixedRate = 1000 * 60 * 15)
   public void keepServiceAline() throws URISyntaxException, IOException, InterruptedException {
     LOGGER.info("Pinging service to check if alive.");
     HttpClient httpClient = HttpClient.newHttpClient();

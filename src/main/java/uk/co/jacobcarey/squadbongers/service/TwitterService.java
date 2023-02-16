@@ -6,6 +6,7 @@ import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.CreateTweetRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.co.jacobcarey.squadbongers.infrastructure.Config;
 
@@ -16,6 +17,7 @@ public class TwitterService {
 
   TwitterApi twitterApi;
 
+  @Autowired
   public TwitterService() {
 
     LOGGER.info("Creating Twitter client.");

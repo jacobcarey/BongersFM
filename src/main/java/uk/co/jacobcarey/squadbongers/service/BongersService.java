@@ -29,7 +29,7 @@ public class BongersService {
     this.twitterService = twitterService;
   }
 
-  @Scheduled(fixedRate = 1000 * 45)
+  @Scheduled(initialDelay = 1000 * 30, fixedRate = 1000 * 60 * 4)
   public void checkForUpdates() throws ApiException {
     LOGGER.info("Let's start checking for bongers...");
 
