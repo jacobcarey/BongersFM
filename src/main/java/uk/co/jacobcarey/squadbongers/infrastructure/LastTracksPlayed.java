@@ -1,18 +1,18 @@
-package fm.bongers.infrastructure;
+package uk.co.jacobcarey.squadbongers.infrastructure;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LastTracksPlayed {
 
-  private static fm.bongers.infrastructure.LastTracksPlayed INSTANCE;
+  private static uk.co.jacobcarey.squadbongers.infrastructure.LastTracksPlayed INSTANCE;
   private Map<String, Integer> trackTimes;
 
   private LastTracksPlayed() {}
 
-  public static fm.bongers.infrastructure.LastTracksPlayed getInstance() {
+  public static uk.co.jacobcarey.squadbongers.infrastructure.LastTracksPlayed getInstance() {
     if (INSTANCE == null) {
-      INSTANCE = new fm.bongers.infrastructure.LastTracksPlayed();
+      INSTANCE = new uk.co.jacobcarey.squadbongers.infrastructure.LastTracksPlayed();
       Map<String, Integer> trackTimes = new HashMap<>();
       INSTANCE.setTrackTimes(trackTimes);
     }

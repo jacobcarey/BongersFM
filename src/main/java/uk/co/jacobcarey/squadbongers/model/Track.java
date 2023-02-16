@@ -1,4 +1,6 @@
-package fm.bongers.model;
+package uk.co.jacobcarey.squadbongers.model;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Track {
 
@@ -49,18 +51,11 @@ public class Track {
 
   @Override
   public String toString() {
-    return "Track{"
-        + "artist='"
-        + artist
-        + '\''
-        + ", name='"
-        + name
-        + '\''
-        + ", playCount='"
-        + playCount
-        + '\''
-        + ", time="
-        + time
-        + '}';
+    return new ToStringBuilder(this)
+        .append("artist", artist)
+        .append("name", name)
+        .append("playCount", playCount)
+        .append("time", time)
+        .toString();
   }
 }

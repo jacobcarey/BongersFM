@@ -1,17 +1,18 @@
-package fm.bongers.service;
+package uk.co.jacobcarey.squadbongers.service;
 
 import com.twitter.clientlib.ApiException;
 import com.twitter.clientlib.TwitterCredentials;
 import com.twitter.clientlib.api.TwitterApi;
 import com.twitter.clientlib.model.CreateTweetRequest;
-import fm.bongers.infrastructure.Config;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import uk.co.jacobcarey.squadbongers.infrastructure.Config;
 
+@Service
 public class TwitterService {
 
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(TwitterService.class); // Required for Logback to work in Vertx
+  private static final Logger LOGGER = LoggerFactory.getLogger(TwitterService.class);
 
   TwitterApi twitterApi;
 

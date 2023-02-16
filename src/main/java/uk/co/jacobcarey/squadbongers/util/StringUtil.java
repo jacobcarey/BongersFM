@@ -1,9 +1,11 @@
-package fm.bongers.util;
+package uk.co.jacobcarey.squadbongers.util;
 
-import fm.bongers.model.Track;
 import java.util.Map;
+import uk.co.jacobcarey.squadbongers.model.Track;
 
 public class StringUtil {
+
+  private StringUtil() {}
 
   public static String ordinal(int i) {
     int mod100 = i % 100;

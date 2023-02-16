@@ -1,1 +1,1 @@
-web: java -cp target/classes/:target/dependency/* fm.bongers.Application
+web: java -cp target/classes/:target/dependency/* uk.co.jacobcarey.squadbongers.Application

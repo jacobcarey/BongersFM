@@ -1,4 +1,4 @@
-package fm.bongers.infrastructure;
+package uk.co.jacobcarey.squadbongers.infrastructure;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,10 +1,10 @@
-package fm.bongers.infrastructure;
+package uk.co.jacobcarey.squadbongers.infrastructure;
 
 import java.util.Map;
 
 public final class Config {
 
-  private static fm.bongers.infrastructure.Config INSTANCE;
+  private static uk.co.jacobcarey.squadbongers.infrastructure.Config INSTANCE;
   private String lastFmApi;
   private String twitterApiKey;
   private String twitterApiKeySecret;
@@ -15,9 +15,9 @@ public final class Config {
 
   private Config() {}
 
-  public static fm.bongers.infrastructure.Config getInstance() {
+  public static uk.co.jacobcarey.squadbongers.infrastructure.Config getInstance() {
     if (INSTANCE == null) {
-      INSTANCE = new fm.bongers.infrastructure.Config();
+      INSTANCE = new uk.co.jacobcarey.squadbongers.infrastructure.Config();
       Map<String, String> env = System.getenv();
       INSTANCE.setLastFmApi(env.getOrDefault("LAST_FM_KEY", "x"));
       INSTANCE.setTwitterAccessToken(env.getOrDefault("TWITTER_TOKEN", "x"));
