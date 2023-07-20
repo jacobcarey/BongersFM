@@ -1,9 +1,11 @@
 package uk.co.jacobcarey.squadbongers.service;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.twitter.clientlib.ApiException;
-import com.twitter.clientlib.TwitterCredentials;
+import com.twitter.clientlib.TwitterCredentialsOAuth2;
 import com.twitter.clientlib.api.TwitterApi;
-import com.twitter.clientlib.model.CreateTweetRequest;
+import com.twitter.clientlib.auth.TwitterOAuth20AppOnlyService;
+import com.twitter.clientlib.model.TweetCreateRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,29 +15,50 @@ import uk.co.jacobcarey.squadbongers.infrastructure.Config;
 @Service
 public class TwitterService {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(TwitterService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TwitterService.class);
 
-  TwitterApi twitterApi;
+    TwitterApi twitterApi;
 
-  @Autowired
-  public TwitterService() {
+    @Autowired
+    public TwitterService() {
 
-    LOGGER.info("Creating Twitter client.");
-    TwitterCredentials twitterCredentials = new TwitterCredentials();
-    twitterCredentials.setTwitterToken(Config.getInstance().getTwitterAccessToken());
-    twitterCredentials.setTwitterTokenSecret(Config.getInstance().getTwitterAccessTokenSecret());
+        LOGGER.info("Creating Twitter client.");
 
-    twitterCredentials.setTwitterConsumerKey(Config.getInstance().getTwitterApiKey());
-    twitterCredentials.setTwitterConsumerSecret(Config.getInstance().getTwitterApiKeySecret());
 
-    twitterCredentials.setBearerToken(Config.getInstance().getTwitterBearerToken());
+        OAuth2AccessToken accessToken = TwitterService.getAccessToken();
+        TwitterCredentialsOAuth2 twitterCredentialsOAuth2 = new TwitterCredentialsOAuth2(
+                Config.getInstance().getTwitterApiKey(),
+                Config.getInstance().getTwitterApiKeySecret(),
+                accessToken.getAccessToken(),
+                accessToken.getRefreshToken());
 
-    twitterApi = new TwitterApi(twitterCredentials);
-  }
+        twitterApi = new TwitterApi(twitterCredentialsOAuth2);
+    }
 
-  public void sendTweet(String text) throws ApiException {
-    CreateTweetRequest createTweetRequest = new CreateTweetRequest().text(text);
+    public static OAuth2AccessToken getAccessToken() {
+        TwitterOAuth20AppOnlyService service = new TwitterOAuth20AppOnlyService(
+                Config.getInstance().getTwitterApiKey(),
+                Config.getInstance().getTwitterApiKeySecret());
 
-    twitterApi.createTweet(createTweetRequest);
-  }
+        OAuth2AccessToken accessToken = null;
+        try {
+            accessToken = service.getAccessTokenClientCredentialsGrant();
+
+            System.out.println("Access token: " + accessToken.getAccessToken());
+            System.out.println("Token type: " + accessToken.getTokenType());
+            System.out.println("Refresh token: " + accessToken.getRefreshToken());
+        } catch (Exception e) {
+            System.err.println("Error while getting the access token:\n " + e);
+            e.printStackTrace();
+        }
+        return accessToken;
+    }
+
+
+    public void sendTweet(String text) throws ApiException {
+
+        TweetCreateRequest tweetCreateRequest = new TweetCreateRequest();
+        tweetCreateRequest.setText(text);
+        twitterApi.tweets().createTweet(tweetCreateRequest).execute();
+    }
 }

@@ -1,9 +1,6 @@
 package uk.co.jacobcarey.squadbongers.service;
 
 import com.twitter.clientlib.ApiException;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,16 +10,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class PassportService {
 
   public static final String URL =
-      "https://www.passportappointment.service.gov.uk/outreach/publicbooking.ofml";
+          "https://www.passportappointment.service.gov.uk/outreach/publicbooking.ofml";
 
   public static final String NO_APPOINTMENT = "Sorry, there are no available appointments";
   public static final String BUSY =
-      "Sorry, we're experiencing high demand for this service at the moment and the system is busy."
-          + " Please try again later.";
+          "Sorry, we're experiencing high demand for this service at the moment and the system is busy."
+                  + " Please try again later.";
 
   private static final Logger LOGGER = LoggerFactory.getLogger(PassportService.class);
 
@@ -39,8 +40,8 @@ public class PassportService {
       LOGGER.info("Checking for appointments.");
       Document passportGov = Jsoup.connect(URL).get();
       boolean unavailable =
-          StringUtils.containsIgnoreCase(passportGov.body().text(), NO_APPOINTMENT)
-              || StringUtils.containsIgnoreCase(passportGov.body().text(), BUSY);
+              StringUtils.containsIgnoreCase(passportGov.body().text(), NO_APPOINTMENT)
+                      || StringUtils.containsIgnoreCase(passportGov.body().text(), BUSY);
       if (!unavailable) {
         LOGGER.info("Appointments available!");
         sendAppointmentsAvailableTweet(twitterService);

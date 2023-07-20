@@ -8,7 +8,8 @@ public class LastTracksPlayed {
   private static uk.co.jacobcarey.squadbongers.infrastructure.LastTracksPlayed INSTANCE;
   private Map<String, Integer> trackTimes;
 
-  private LastTracksPlayed() {}
+  private LastTracksPlayed() {
+  }
 
   public static uk.co.jacobcarey.squadbongers.infrastructure.LastTracksPlayed getInstance() {
     if (INSTANCE == null) {
